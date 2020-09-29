@@ -1,0 +1,77 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+<!-- Main Content Is Here -->
+
+
+<!--<table>-->
+    <!--<tr>-->
+        <!--{% for col in column_names %}-->
+        <!--<th>{{col}}</th>-->
+        <!--{% endfor %}-->
+    <!--</tr>-->
+    <!--{% for row in row_data %}-->
+    <!--<tr>-->
+        <!--{% for col, row_ in zip(column_names, row) %}-->
+        <!--{% if col == link_column %}-->
+        <!--<td>-->
+            <!--<button type="submit" value={{ row_ }} name="person_id" form="patient_form" class="patient_button">-->
+                <!--{{ row_ }}-->
+            <!--</button>-->
+        <!--</td>-->
+        <!--{% else %}-->
+        <!--<td>{{row_}}</td>-->
+        <!--{% endif %}-->
+        <!--{% endfor %}-->
+    <!--</tr>-->
+    <!--{% endfor %}-->
+
+<!--</table>-->
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Simplified MLApp</h1>
+          <p>Simplify Your Machine Learning and Data Exploration(Semi-Automated ML)</p>
+          <p><a href="{{ url_for('index')}}" type="button" class="btn btn-danger" > Refresh</a></p>
+        </div>
+      </div>
+
+<body>
+  <h2>Results</h2>
+        {{filename}}
+  <div class="container">
+    {{df_table.to_html(classes ="table table-striped
+    table-hover", na_rep="-") | safe}}
+
+  </div>
+
+<body>
+
+
+
+
+
+
+
+   
+
+
+
+
+
+{% endblock %}
+
+<!-- External 3-Party JS Is Here -->
+
+{% block scripts %}
+
+{{ super() }} 
+
+
+
+
+{% endblock%}
+
+
+

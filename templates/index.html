@@ -1,0 +1,64 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+<!-- Main Content Is Here -->
+<html style="margin: 0; ">
+    <body style="display: flex; height: 100vh; background-color: #e6e6e6; background-image: url({{ url_for('static', filename='img/Crime.jpg') }})">
+        <br>
+        <div style="margin: auto; width: 70%;">
+            <div class="border rounded-2" style="background-color: #f2f2f2; border-radius: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26); padding: 30px;">
+                <h1 class="display-4 text-center" style = "color:#006400;" > AI Based Crime Analyzer</h1>
+                <div class="container">
+                    <hr><br>
+                    <p class="text-center display-4" style="font-size: 30px;">Criminal data extraction from News and applying NER</p>
+                    <p class="text-center display-4" style="font-size: 30px;">Source: <kbd>DAWN News</kbd></p>
+                    <p class="text-center"><a href="{{ url_for('index')}}" type="button" class="btn btn-primary" > Refresh</a></p>
+                </div>
+                <hr><br><br>
+                <div style="width: 50%; padding: 30px; border-radius: 15px; border: 1px solid gray; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);" class="container">
+                    <p>Enter Dates</p>
+                    <hr>
+                    <form method="POST", action="{{url_for('Scrape')}}">
+                        <div class= "form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail4">From</label>
+                            <input type="text" class="form-control" id="from" placeholder="Year-Month-Day" name="text1">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputPassword4">To</label>
+                            <input type="text" class="form-control" id="to" placeholder="Year-Month-Day" name="text2">
+                          </div>
+                          <input type="submit"  value='Extract Crime News' class="btn btn-primary mb-2">
+                          <input type="reset" value="Reset" class="btn btn-success mb-2 ml-2">
+                    </form>
+                </div>
+            </div>
+            <br><br>
+            <div class="container" align="center" >
+                <form method="POST" class="form-group" enctype=multipart/form-data action="{{ url_for('datauploads')}}">
+                  <input type="file" name="csv_data">
+                  <input type="submit" value="Submit CSV" class="btn btn-primary mb-2">
+                  <input type="reset" value="Reset" class="btn btn-danger mb-2">
+                </form>           
+            </div>
+            <br>
+        </div>    
+    </body>
+</html>    
+ 
+
+{% endblock %}
+
+<!-- Main External 3-Party JS Is Here -->
+
+{% block scripts %}
+
+{{ super() }} 
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='css/styles.css')}}">
+
+
+{% endblock%}
+
+
+

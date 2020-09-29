@@ -1,0 +1,56 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+<!-- Main Content Is Here -->
+     <div class="container " >
+      <div class="jumbotron" align="center" style="background:#588DDC">
+         <h1 class="display-3" style = "color:#006400" > CRIME ANALYZER Using NLP</h1>
+          <p>Criminal data extraction from News and applying NER</p>
+          <p>Source: DAWN News</p>
+          <p><a href="{{ url_for('index')}}" type="button" class="btn btn-primary" > Refresh</a></p>
+        </div>
+      
+
+      <div class="container" align="center" >
+        <form method="POST" class="form-group" enctype=multipart/form-data action="{{ url_for('datauploads')}}">
+          <input type="file" name="csv_data">
+          <input type="submit" value="Submit CSV" class="btn btn-primary mb-2">
+          <input type="reset" value="Reset" class="btn btn-danger mb-2">
+        </form>
+                    
+     </div>
+     <div class="container" align="center" style="background:#00834f">
+
+         <header>  </header><br>
+        <header> ENTER DATE : Example 2020-01-01 </header><br>
+
+        <form method="POST", action="{{url_for('Scrape')}}">
+           <b> FROM :  <input type="date", name='text1', placeholder="Year-Month-Day "> <br><br>
+            TO :  <input type="date", name='text2', placeholder="Year-Month-Day "> <br><br>
+           </b>
+            <input type="submit"  value='Extract Crime News' class="btn btn-primary mb-2">
+            <input type="reset" value="Reset" class="btn btn-danger mb-2">
+        </form>
+
+     </div>
+
+    
+    </div>     
+    
+ 
+
+{% endblock %}
+
+<!-- Main External 3-Party JS Is Here -->
+
+{% block scripts %}
+
+{{ super() }} 
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='css/styles.css')}}">
+
+
+{% endblock%}
+
+
+
